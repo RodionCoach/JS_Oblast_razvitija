@@ -1,0 +1,128 @@
+body, html { 
+    width: 100%;
+    height: 100%;
+}
+
+.container-fluid.first{
+    width: 100%;
+    background: #b7b7b7;
+    padding-top: 50px;
+    padding-right: 0;
+    padding-left: 0;
+    box-sizing: padding-box;
+}
+
+h1{
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.btn.btn-light{
+    position: relative;
+    left: calc(100%/2 - 80px);
+    width: 160px;
+    height: 70px;
+    font-size: large;
+    cursor: pointer;
+}
+
+ul{
+    background: #b7b7b7;
+    margin-top: 50px;
+    padding-bottom: 100px;
+}
+
+.nav-link{
+    color: #858585;
+}
+
+.nav-link:not(.hr):hover{
+    color: #1b293e;
+    background: #b0b0b0;
+}
+
+.nav-link.hr{
+    padding-top: 0;
+    width: calc(100vw - 25px);
+}
+
+.container-fluid.second{
+    background: #5d8adc;
+    box-sizing: padding-box;
+    height: 100vh;
+}
+
+.carousel.slide{
+    width: 100%;
+    height: calc(180px + 10%);
+}
+
+.carousel-item{
+    white-space: nowrap;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+}
+
+.carousel-item>div{
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 25%;
+    height: 180px;
+    display: inline-block;
+    color: #5a8ecc;
+    line-height: 180px;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    background: #fdffff;
+}
+
+.carousel-inner{
+/*  можно и внешними отступами фиксировать элемент*/
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-indicators{
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+.carousel-control-prev{
+    margin-top: 2%;
+    height: 180px;
+}
+
+.carousel-control-next{
+    margin-top: 2%;
+    height: 180px;
+}
+
+.code-area{
+    padding-top: 2%;
+    text-align: center;
+}
+
+textarea{
+    background-color: #0a1422;
+    color: white;
+    border: 15px solid white;
+    width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+    .nav-link.hr{
+        width: calc(100vw/2 - 300px);
+    }
+    textarea{
+        width: 50%;
+    }
+    .carousel-item>div{
+        width: 280px;
+    }
+}
