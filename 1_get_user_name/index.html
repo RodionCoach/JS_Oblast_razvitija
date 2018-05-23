@@ -2,20 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Name</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </head>
+<style>
+	.modal{
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgba(0,0,0,0.8);
+	}
+	.modal-content{
+		background-color: white; 
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
+	input{
+		width: 50%;
+	}
+</style>
 <body>
+
+<div id = 'myModal' class = 'modal'>
+	<div class = 'modal-content'>
+		<span class = 'close'>&times;</span>
+		<p></p>
+	</div>
+</div>
+
 <div class="container">
-    <div class="row">
-        <h2 class="col-sm-12 col-md-12 col-lg-12">Title</h2>
+    <div class="">
+        <h5 class="title">Ваше имя</h5>
         <div class="form-group">
-            <div class="col-sm-8 col-md-6 col-lg-4">
-                <input type="name" class="form-control" id="search" placeholder="Please, enter your name..">
+            <div class="input_box">
+                <input type="name" class="input_element" id="search" placeholder="Please, enter your name..">
             </div>
         </div>
     </div>
@@ -23,24 +53,72 @@
 
 <script>
 
-    let input = document.querySelector('#search');
+    let input = document.querySelector("#search");
+    let modal = document.querySelector(".modal");
+    let str = /[а-я]/ig; 
 
-//    $(function () {
-//         let el = $('h5');
-//         let inp = $('input.form-control');
-//         let str = /[а-я]/ig;
-//         let reg = new RegExp(inp.val());
-//         $(inp).on('input', function (){
-//             reg = new RegExp(inp.val());
-//                 if(inp.val().search(str) == sdf-1){
-//                         $(inp).css({'border-color': 'red',  'box-shadow': '0 0 10px red'});
-//                         inp.val('');
-//                         return;
-//                 }else{
-//                         $(inp).css({'border-color': '', 'box-shadow': ''});
-//                 };
-// });
-//         });
+
+    input.addEventListener("blur", form_out);
+    input.addEventListener("focus", on_input);
+    input.addEventListener("input", on_input);
+    input.addEventListener("keydown", accept);
+
+
+    function form_out(){
+    	console.log('blur');
+    	if(input.value == ""){
+
+    	}else if(input.value == ""){
+			setTimeout(function(){
+				input.style.border = "1px solid black";
+				input.style.borderShadow = "none";
+				console.log('применились')
+			}, 10);
+    	}
+    }
+
+    function accept(){
+    	console.log('accept')
+    	if(input.value == ""){ 
+    		modal.style.display = "block";
+    		input.style.borderColor = "5px solid red";
+			input.style.borderShadow = "0 0 10px red";
+		}else{
+			modal.style.display = "block";
+    		input.style.borderColor = "5px solid red";
+			input.style.borderShadow = "0 0 10px red";
+		}
+    }
+
+    function on_input(){
+    	console.log('input')
+    	if(input.value.search(str) == -1){
+	    	input.style.borderColor = "5px solid red";
+			input.style.borderShadow = "0 0 10px red";
+		}else{
+			input.style.borderColor = "5px solid blue";
+			input.style.borderShadow = "0 0 10px blue";
+		}
+
+    }
+
+/*   $(function () {
+        let el = $('h5');
+        let inp = $('input.form-control');
+        let str = /[а-я]/ig;
+        let reg = new RegExp(inp.val());
+        $(inp).on('input', function (){
+            reg = new RegExp(inp.val());
+                if(inp.val().search(str) == -1){
+                        $(inp).css({'border-color': 'red',  'box-shadow': '0 0 10px red'});
+                        inp.val('');
+                        return;
+                }else{
+                        $(inp).css({'border-color': '', 'box-shadow': ''});
+                };
+			});
+     });
+*/
 </script>
 
 </body>
