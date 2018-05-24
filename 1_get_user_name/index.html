@@ -24,28 +24,47 @@
 		background-color: white; 
 		margin: 15% auto;
 		padding: 20px;
+        padding-top: 0;
+        padding-bottom: 0;    
 		border: 1px solid #888;
 		width: 80%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        line-height: 5em;  
 	}
+    .close{
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        width: 10%;
+        bottom: 10px;
+    }
+    .modal-content{
+        text-align: right;            
+    }
 	input{
 		width: 50%;
+        border-radius: 8px;
+        border: 1px solid black;
+        outline:none;
 	}
 </style>
-<body>
-
-<div id = 'myModal' class = 'modal'>
-	<div class = 'modal-content'>
-		<span class = 'close'>&times;</span>
-		<p></p>
-	</div>
-</div>
-
+<body onkeydown = "console.log('событие'); if(event.keyCode == 27)
+                                            document.querySelector('#myModal').style.display = 'none';">
+    <div id = "myModal" onclick = "event.preventDefault(); this.style.display = 'none';" class = "modal">
+    	<div class = "modal-content" onclick = "event.stopPropagation();">
+            <span></span>
+    		<div class = "close"><span onclick = "event.preventDefault(); document.querySelector('#myModal').style.display = 'none';">&times;</span></div>
+    	</div>
+    </div>
 <div class="container">
     <div class="">
         <h5 class="title">Ваше имя</h5>
         <div class="form-group">
             <div class="input_box">
-                <input type="name" class="input_element" id="search" placeholder="Please, enter your name..">
+                <input type="input" class="input_element" id="search" placeholder=" Please, enter your name...">
             </div>
         </div>
     </div>
@@ -55,70 +74,57 @@
 
     let input = document.querySelector("#search");
     let modal = document.querySelector(".modal");
-    let str = /[а-я]/ig; 
-
+    let str = /^[a-zA-Zа-яА-я][a-zA-Zа-яА-я]{1,20}$/ig;
+    let letter = /^[a-zA-Zфа-яА-я]{1}/ig;
 
     input.addEventListener("blur", form_out);
     input.addEventListener("focus", on_input);
     input.addEventListener("input", on_input);
-    input.addEventListener("keydown", accept);
 
 
     function form_out(){
-    	console.log('blur');
-    	if(input.value == ""){
 
+    	if(input.value.search(letter) != -1){
+            input.blur(); 
+            modal.style.display = "block";
+            modal.firstChild.nextElementSibling.firstElementChild.textContent = "Incorrect format";
     	}else if(input.value == ""){
-			setTimeout(function(){
-				input.style.border = "1px solid black";
-				input.style.borderShadow = "none";
-				console.log('применились')
-			}, 10);
+            input.style.border = "1px solid black";
+            input.style.boxShadow = "none";
     	}
     }
 
-    function accept(){
-    	console.log('accept')
-    	if(input.value == ""){ 
-    		modal.style.display = "block";
-    		input.style.borderColor = "5px solid red";
-			input.style.borderShadow = "0 0 10px red";
-		}else{
-			modal.style.display = "block";
-    		input.style.borderColor = "5px solid red";
-			input.style.borderShadow = "0 0 10px red";
-		}
-    }
-
     function on_input(){
-    	console.log('input')
-    	if(input.value.search(str) == -1){
-	    	input.style.borderColor = "5px solid red";
-			input.style.borderShadow = "0 0 10px red";
-		}else{
-			input.style.borderColor = "5px solid blue";
-			input.style.borderShadow = "0 0 10px blue";
-		}
 
+    	if(input.value.search(str) == -1 && input.value != ""){
+	    	input.style.border = "1px solid red";
+			input.style.boxShadow = "0 0 10px red";
+            input.removeEventListener("keydown", accept);
+        }else{
+			input.style.border = "1px solid blue";
+			input.style.boxShadow = "0 0 10px blue";
+            input.addEventListener("keydown", accept);
+		}
     }
 
-/*   $(function () {
-        let el = $('h5');
-        let inp = $('input.form-control');
-        let str = /[а-я]/ig;
-        let reg = new RegExp(inp.val());
-        $(inp).on('input', function (){
-            reg = new RegExp(inp.val());
-                if(inp.val().search(str) == -1){
-                        $(inp).css({'border-color': 'red',  'box-shadow': '0 0 10px red'});
-                        inp.val('');
-                        return;
-                }else{
-                        $(inp).css({'border-color': '', 'box-shadow': ''});
-                };
-			});
-     });
-*/
+    function accept(e){
+
+        if (e.keyCode === 13){
+            if(input.value == ""){
+                input.blur(); 
+                modal.style.display = "block";
+                modal.firstChild.nextElementSibling.firstElementChild.textContent = "Enter your name";
+                input.style.border = "1px solid red";
+                input.style.boxShadow = "0 0 10px red";
+            }else{
+                input.blur(); 
+                modal.style.display = "block";
+                modal.firstChild.nextElementSibling.firstElementChild.textContent = `Your name is ${input.value}`;
+                input.style.border = "1px solid red";
+                input.style.boxShadow = "0 0 10px red";
+            }
+        }
+    }
 </script>
 
 </body>
