@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Name</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
+<style>
+body{
+    padding: 10px;
+}
+.form{
+    margin-left: 35%;
+}
+</style>
+<body>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<form class = "form">
+    <div class="form-column">
+        <div class="col-md-4 mb-3">
+            <label for="validationServerName">Имя</label>
+            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Имя" required>
+            <div class="valid-feedback">
+                &#10004;     
+            </div>
+            <div class="invalid-feedback">
+                &#10006;
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationServerSecondName">Фамилия</label>
+            <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Фамилия" required>
+            <div class="valid-feedback">
+                &#10004;
+            </div>
+            <div class="invalid-feedback">
+                &#10006;
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationServerUsername">Имя пользователя</label>
+            <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend3">@</span>
+            </div>
+            <input type="text" class="form-control is-valid" id="validationServerUsername" placeholder="пользователя" aria-describedby="inputGroupPrepend3" required>
+            <div class="valid-feedback">
+                &#10004; 
+            </div>
+            <div class="invalid-feedback">
+                &#10006;
+            </div>
+            </div>
+        </div>
+    </div>
+        <button class="btn btn-primary submit" type="submit">Подтверждение</button>
+        <button type="button" class="btn btn-primary clear">Clear</button>        
+</form>
+
+<script>
+
+    let form = document.querySelector("form");
+    let input_name = document.querySelector("#validationServer01");
+    let input_lastname = document.querySelector("#validationServer02");
+    let input_email = document.querySelector("#validationServerUsername");
+    let button_clear = document.querySelector(".btn.btn-primary.clear");
+    let button_submit = document.querySelector(".btn.btn-primary.submit");
+    let modal_body = document.querySelector(".modal-body");
+
+    button_clear.addEventListener("click", clear);
+    form.addEventListener("submit", submit);
+
+    function clear(){
+
+        modal_body.innerText = "";
+        input_name.value = "";
+        input_lastname.value = "";
+        input_email.value = "";
+    }
+
+    function submit(e){
+
+        modal_body.innerText = `Ваше имя: ${input_name.value}\n Ваша фамилия: ${input_lastname.value}\n Ваш e-mail: ${input_email.value}`;  
+        $('#exampleModalCenter').modal('toggle');
+        e.preventDefault();
+    }
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
