@@ -23,6 +23,26 @@ const powX = (x, n) => {
 	return pow(x, n);
 };
 
+//art 2 with clouser
+function powX (x, n){
+
+    x = Math.round(x);
+    n = Math.round(n);
+
+    return function pow (x, n){
+        console.log (x, n);
+        if(n === 1){
+            return x;
+        }else{
+            return x*pow(x, n-1);
+        }
+    };
+};
+
+const newPow = powX ();
+
+console.log(newPow(3, 4));
+
 //3
 const checkingComb = (str, comb) => {
 
