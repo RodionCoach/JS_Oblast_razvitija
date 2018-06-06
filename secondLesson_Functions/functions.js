@@ -1,3 +1,4 @@
+//https://docs.google.com/document/d/1LiXCifUtoB1Kfil-s0uYspgRUj5pLRvVrem8bXbRWRc/edit
 //1 avverage value
 const mid = (...args) => {
 

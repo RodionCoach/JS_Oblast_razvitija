@@ -1,3 +1,4 @@
+//https://docs.google.com/document/d/1SXjJYAAE8urpq3Hy6jLBzTl6UcE0t81rkWDL3w3t43g/edit
 //1
 const isInArray = (arr, el) => (arr.indexOf(el) != -1) ? true : false;
 
