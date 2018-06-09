@@ -1,5 +1,7 @@
 /**
  * Created by Red_I-O on 31.05.2018.
+ 
+https://docs.google.com/document/d/1TPXigD3S0p9m0HvEElpngOwl6rhHgxuOMTEAzSGXig4/edit
  */
 //1
 const cout = (str) => str.length;
