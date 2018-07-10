@@ -1,4 +1,4 @@
-//1 самые быстрые способы, так как splice и map едленные операции
+//1 самые быстрые способы, так как splice и map медленные операции
 const middleAgeBySex_1 = (infoArray, sex) => {
 
     let i = 0, age = 0;
